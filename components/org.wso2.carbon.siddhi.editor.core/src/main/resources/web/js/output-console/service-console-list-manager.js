@@ -18,6 +18,16 @@
 define(['log', 'jquery', 'lodash', 'output_console_list', 'workspace', 'service_console'],
 
     function (log, $, _, ConsoleList, Workspace, ServiceConsole) {
+        var constants = {
+            STREAM: 'streamdrop',
+            PASS_THROUGH : 'squerydrop',
+            FILTER : 'filterdrop',
+            JOIN : 'joquerydrop',
+            WINDOW_QUERY : 'wquerydrop',
+            PATTERN : 'stquerydrop',
+            WINDOW_STREAM :'',
+            PARTITION :'partitiondrop'
+        };
 
         var OutputConsoleList = ConsoleList.extend(
             /** @lends ConsoleList.prototype */
@@ -31,9 +41,24 @@ define(['log', 'jquery', 'lodash', 'output_console_list', 'workspace', 'service_
                     this._options = options;
                     var self = this;
                     this._activateBtn.on('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        self.application.commandManager.dispatch(_.get(self._options, 'command.id'));
+                        if (self.activeConsole.options._type === "FORM") {
+                            //self.activeConsole.trigger('close-button-in-form-clicked');
+                            $(self.activeConsole).trigger('close-button-in-form-clicked');
+                            // var elementId = self.activeConsole.options.elementId;
+                            // var elementType = self.activeConsole.options.elementType;
+                            // var appData = self.activeConsole.options.appData;
+                            // if(elementType === constants.STREAM) {
+                            //     if(appData.getStream(elementId) === undefined) {
+                            //         $("#"+elementId).remove();
+                            //     }
+                            // }
+                            // $("#grid-container").removeClass("disabledbutton");
+                            // $("#tool-palette-container").removeClass("disabledbutton");
+                        } else {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            self.application.commandManager.dispatch(_.get(self._options, 'command.id'));
+                        }
                     });
                     this._clearConsoleBtn.on('click', function (e) {
                         e.preventDefault();

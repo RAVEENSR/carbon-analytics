@@ -56,9 +56,11 @@ define(['require', 'log', 'jquery', 'lodash', 'jsplumb', 'stream', 'leftStream',
 
         /**
          * @function generate a tab in the output console to view the form
+         * @param elementId id of the element which form is created for
+         * @param elementType type of the element
          * @returns newly created formConsole
          */
-        FormBuilder.prototype.createTabForForm = function () {
+        FormBuilder.prototype.createTabForForm = function (elementId, elementType) {
             var activeTab = this.application.tabController.getActiveTab();
             var siddhiAppName = "";
 
@@ -71,6 +73,9 @@ define(['require', 'log', 'jquery', 'lodash', 'jsplumb', 'stream', 'leftStream',
             var uniqueTabId = 'form-' + activeTab.cid;
             var consoleOptions = {};
             var options = {};
+            _.set(options, 'elementId', elementId);
+            _.set(options, 'elementType', elementType);
+            _.set(options, 'appData', this.appData);
             _.set(options, '_type', "FORM");
             _.set(options, 'title', "Form");
             _.set(options, 'uniqueTabId', uniqueTabId);
@@ -92,7 +97,14 @@ define(['require', 'log', 'jquery', 'lodash', 'jsplumb', 'stream', 'leftStream',
 
             _.set(options, 'consoleObj', console);
             _.set(consoleOptions, 'consoleOptions', options);
-            return this.consoleListManager.newFormConsole(consoleOptions);
+            var formConsole = this.consoleListManager.newFormConsole(consoleOptions);
+            $(formConsole).on( "close-button-in-form-clicked",function() {
+                console.log("fdsafas");
+            // Add an event listener
+            // formConsole.addEventListener("close-button-in-form-clicked", function(e) {
+            //     console.log(e.detail); // Prints "Example of an event"
+            });
+            return formConsole;
         };
 
         /**
@@ -102,7 +114,7 @@ define(['require', 'log', 'jquery', 'lodash', 'jsplumb', 'stream', 'leftStream',
          */
         FormBuilder.prototype.DefineStream = function (i) {
             var self = this;
-            var formConsole = this.createTabForForm();
+            var formConsole = this.createTabForForm(i, constants.STREAM);
             var formContainer = formConsole.getContentContainer();
             var propertyDiv = $('<div id="property-header"><h3>Define Stream </h3></div>' +
                 '<div id="define-stream" class="define-stream"></div>');
