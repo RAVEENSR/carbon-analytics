@@ -193,13 +193,15 @@ define(['require', 'jquery', 'backbone', 'lodash', 'log', 'design_view', "./sour
                             designView.renderDesignGrid(JSONObject);
                             sourceContainer.hide();
                             designContainer.show();
-                            toggleViewButton.html("<i class=\"fw fw-code\"></i>&nbsp;&nbsp;Source View");
+                            toggleViewButton.html("<i class=\"fw fw-code\"></i>" +
+                                "<span class=\"toggle-button-text\">Source View</span>");
                             console.log(JSON.stringify(designView.getSiddhiAppContent()));
                         } else if (designContainer.is(':visible')) {
                             designContainer.hide();
                             sourceContainer.show();
                             self._sourceView.editorResize();
-                            toggleViewButton.html("<i class=\"fw fw-design-view\"></i>&nbsp;&nbsp;Design View");
+                            toggleViewButton.html("<i class=\"fw fw-design-view\"></i>" +
+                                "<span class=\"toggle-button-text\">Design View</span>");
                             console.log(JSON.stringify(designView.getSiddhiAppContent()));
                         }
                     });
