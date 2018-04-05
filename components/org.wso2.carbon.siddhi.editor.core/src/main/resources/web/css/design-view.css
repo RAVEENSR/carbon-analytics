@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
@@ -85,6 +85,14 @@
     background-image: url("../images/window.png");
 }
 
+.triggerdrop {
+    background-image: url("../images/trigger.png");
+}
+
+.aggregationdrop {
+    background-image: url("../images/aggregation.png");
+}
+
 .squerydrop {
     background-image: url("../images/passthrough.png");
 }
@@ -109,7 +117,7 @@
     Dropped Elements corresponding to their toolbox elements
 */
 
-.streamdrop, .tabledrop, .windowdrop, .squerydrop, .filterdrop, .wquerydrop, .joquerydrop, .stquerydrop {
+.streamdrop, .tabledrop, .windowdrop, .triggerdrop, .aggregationdrop, .squerydrop, .filterdrop, .wquerydrop, .joquerydrop, .stquerydrop {
     border-radius: 0.5em;
     opacity: 0.8;
     width: 60px;
@@ -264,13 +272,13 @@ td {
     -webkit-background-clip: text;
 }
 
-.connectorInStream, .connectorInTable, .connectorInWindow {
+.connectorInStream, .connectorInTable, .connectorInWindow, .connectorInTrigger, .connectorInAggregation {
     float: left;
     margin-top: -33%;
     margin-left: -13px;
 }
 
-.connectorOutStream, .connectorOutTable, .connectorOutWindow {
+.connectorOutStream, .connectorOutTable, .connectorOutWindow, .connectorOutTrigger, .connectorOutAggregation {
     float: right;
     margin-top: -33%;
     margin-right: -13px;
@@ -303,7 +311,7 @@ td {
     margin-right: -10%;
 }
 
-.windowNameNode, .tableNameNode, .streamNameNode, .queryNameNode, .partitionNameNode {
+.aggregationNameNode, .triggerNameNode, .windowNameNode, .tableNameNode, .streamNameNode, .queryNameNode, .partitionNameNode {
     float: right;
     width: inherit;
     height: inherit;
