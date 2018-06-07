@@ -144,12 +144,12 @@ define(['require', 'log', 'jquery', 'backbone', 'tool_palette/tool', 'tool_palet
 
         render: function () {
             var self = this;
-            self._$parent_el.addClass('non-user-selectable');
+            self._$parent_el.addClass('non-user-selectable nano');
 
             var groupDiv = $('<div></div>');
             self._$parent_el.append(groupDiv);
             groupDiv.attr('id', "tool-group-elements");
-            groupDiv.attr('class', "tool-group");
+            groupDiv.attr('class', "tool-group nano-content");
 
             this.tools.forEach(function (tool) {
                 var toolView = new ToolView({model: tool, toolPalette: self.toolPalette});
